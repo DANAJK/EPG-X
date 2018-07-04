@@ -27,7 +27,7 @@ nt2 = 2001;
 t2s = linspace(10,120,nt2);
 r2s = 1./t2s;
 tt = ESP*(1:Necho);
-S =exp(-r2s(:)*tt);
+S =exp(-r2s(:)*tt);  % [nt2 Necho] 
 
 
 
@@ -94,6 +94,7 @@ end
 
 t2sol = lsqnonneg(S',abs(s(:)));
 [~,pks] = findpeaks(t2sol);
+disp('t2s(pks):')
 t2s(pks)
 sum(t2sol(pks(1)+(-5:5)))/ sum(t2sol(:)) %<-- look 5 points either side
 
@@ -232,4 +233,4 @@ legend('Total echo amplitude','Compartment a','Compartment b')
 
 setpospap([360   231   900   450])
 %
-print -r300 -dpng bin/Test2_fig1.png
+% print -r300 -dpng bin/Test2_fig1.png

@@ -62,10 +62,11 @@ npulse = floor(5*T1/TR);
 
 AA = d2r(alpha)*ones(npulse,1);
 
+
 if 0 % load stored result if 0
 Sig = zeros(nphi,3);
-figure(1)
-clf
+figure ;
+
 for ii=1:nphi
    
     % Compute RF spoling phase cycles
@@ -99,8 +100,8 @@ end
 
 
 %% Combined figure
-figure(1)
-clf
+figure
+% clf
 subplot(211)
 hold on
 p1=plot(abs(s0),'linewidth',1.5);
@@ -166,7 +167,7 @@ text(-25,0.035,'(b)','fontsize',20,'fontweight','bold')
 
 setpospap([360   174   460   460])
 
-print -dpng -r300 bin/Test1_fig1.png
+% print -dpng -r300 bin/Test1_fig1.png
 
 %% EPG-X(BM) with variable delta
 phi_arr = 1:1:180;
@@ -179,8 +180,8 @@ AA = d2r(alpha)*ones(npulse,1);
 
 if 0 % load stored result if 0
 Sig = zeros(nphi,nd);
-figure(1)
-clf
+figure
+%clf
 for ii=1:nphi
    for jj=1:nd
     % Compute RF spoling phase cycles
@@ -202,8 +203,8 @@ else
 end
 
 %% Figure
-figure(1)
-clf
+figure
+%clf
 mm=mesh(delta_arr,phi_arr,Sig);
 view([-80 30])
 xlabel('\delta_b / ppm')
@@ -213,7 +214,7 @@ set(gca,'fontsize',14)
 zlim([0.045 0.075])
 setpospap([50 300 1300 440])
 colormap parula
-print -dpng -r300 bin/Test1_fig2.png
+% print -dpng -r300 bin/Test1_fig2.png
 
 
 %% bSSFP with same parameters as above
@@ -268,8 +269,8 @@ mxyGloor = ssSSFP_Gloor(d2r(alpha),b1sqrdtau, TR, T1_MT,T2_MT,f_MT,k_MT,G);
 
 %% Figure just with plots
 
-figure(6)
-clf
+figure ;
+%clf
 
 subplot(221)
 pp=plot(linspace(-pi,pi,npulse),ssfpss,'-');
@@ -339,12 +340,12 @@ for jj=1:4
     text(-4,-0.02,lbls{jj},'fontsize',20,'fontweight','bold')
 end
 %
-print -dpng -r300 bin/Test1_fig3.png
+% print -dpng -r300 bin/Test1_fig3.png
 
 
 %% Supporting figure with approach to steady state
-figure(6)
-clf
+figure
+%clf
 
 subplot(221)
 imagesc(1:npulse,phiTR*TR,abs(mxys),[0 0.2])
@@ -373,7 +374,7 @@ ylabel('\psi / rad')
 colormap gray
 
 setpospap([300 100 700 550])
-print -dpng -r300 bin/Test1_fig4.png
+% print -dpng -r300 bin/Test1_fig4.png
 
 %% Cross validation with isochromat simulations
 
@@ -476,4 +477,4 @@ text(215,-0.02,'(b)','fontsize',18,'fontweight','bold')
 text(215,-0.3,'(d)','fontsize',18,'fontweight','bold')
 text(215,-0.58,'(f)','fontsize',18,'fontweight','bold')
 %
-print -dpng -r300 bin/Test1_fig5.png
+% print -dpng -r300 bin/Test1_fig5.png

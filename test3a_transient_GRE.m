@@ -3,6 +3,9 @@
 addpath(genpath('lib'));
 addpath(genpath('EPGX-src'));
 
+fp = gcf ; % DA modifications to prevent overwrite of figures
+fnum = fp.Number ;
+
 %%% White matter model (see Gloor 2008)
 f = 0.1166;  %% F=0.132 = f/(1-f) => f=0.1166
 kf = 4.3e-3;
@@ -55,7 +58,7 @@ ssfp_mt = ifftshift(size(Fn2,1)*(ifft(ifftshift(Fn2,1),[],1)),1);
 ssfp_nomt = ifftshift(size(Fn1,1)*(ifft(ifftshift(Fn1,1),[],1)),1);
 
 %%
-figure(1)
+figure(fnum+1)
 clf
 subplot(3,1,1)
 plot(r2d(alphas),'-')
@@ -101,7 +104,7 @@ axes(gg(5))
 text(-32,-5,'(a)','fontsize',17,'fontweight','bold')
 text(-32,-60,'(b)','fontsize',17,'fontweight','bold')
 text(-32,-125,'(c)','fontsize',17,'fontweight','bold')
-print -dpng -r300 bin/Test3a_fig1.png
+% print -dpng -r300 bin/Test3a_fig1.png
 
 %% Balanced display
 
@@ -109,7 +112,7 @@ phiTR= linspace(-pi,pi,size(ssfp_mt,1));
 [~,idx0] = min(abs(phiTR));
 [~,idx50] = min(abs(phiTR-pi/2));
 
-figure(1);clf;
+figure(fnum+2);clf;
 nr=2;nc=3;
 
 subplot(nr,nc,2)
@@ -182,4 +185,4 @@ text(-700,-0.9,'(a)','fontsize',18,'fontweight','bold')
 text(-380,-1.1,'(b)','fontsize',18,'fontweight','bold')
 text(-48,-1.1,'(c)','fontsize',18,'fontweight','bold')
 
-print -dpng -r300 bin/Test3a_fig2.png
+% print -dpng -r300 bin/Test3a_fig2.png
