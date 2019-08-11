@@ -165,7 +165,9 @@ title('Single slice TSE','fontsize',fs)
 
 for ii=2:nc
     subplot(nr,nc,ii)
-    imsjm(ims{sl(ii),1},[200 1200],'rot',-90,'gray')
+    % imsjm(ims{sl(ii),1},[200 1200],'rot',-90,'gray')
+    % DA edit
+    imshow(rot90(ims{sl(ii),1},3),[200 1200])
     title(sprintf('Multislice (%d slices)',nslice(sl(ii))),'fontsize',fs)
     axis off
 end
@@ -221,5 +223,5 @@ for ii=1:3
     gc(ii+3).Position = [0.7-0.3*(ii-1) 0.3 0.23 0.18];
 end
 
-print -dpng -r300 bin/Test4_fig1.png
+% print -dpng -r300 bin/Test4_fig1.png
 
